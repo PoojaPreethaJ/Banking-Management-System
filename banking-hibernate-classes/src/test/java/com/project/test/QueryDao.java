@@ -1,11 +1,42 @@
 package com.project.test;
 
+import static org.junit.Assert.assertNotNull;
+
+import java.util.List;
+
 import org.junit.Test;
+
+import com.project.dao.SpecificDao;
+import com.project.entities.UserGeneralDetail;
+import com.project.entities.UserTransactionDetail;
 
 public class QueryDao {
 
 	@Test
-	public void fetchUserDetailUsingServiceNo(long serviceNo) {
-		
+	public void fetchBalanceUsingAccountNumber() {
+		SpecificDao dao = new SpecificDao();
+		double bal = dao.fetchBalance(1085);
+		assertNotNull(bal);
+		System.out.println(bal);
+	}
+	
+	@Test
+	public void fetchSuccessfulTransactionTest() {
+		SpecificDao dao = new SpecificDao();
+		List<UserTransactionDetail> list =dao.fetchSuccessfulTransaction(" loan amount ");
+		assertNotNull(list);
+		for(UserTransactionDetail val:list) {
+			System.out.println(val.getModeOfTransaction()+" , "+val.getFromAccount().getAccountNumber()+" , "+val.getToAccount().getAccountNumber()+" , "+val.getStatus());
+		}
+	}
+	
+	@Test
+	public void fetchDetailTest() {
+		SpecificDao dao = new SpecificDao();
+		List<UserGeneralDetail> list =dao.fetchUserDetails(7777);
+		assertNotNull(list);
+		for(UserGeneralDetail val:list) {
+			System.out.println(val.getGrossIncome()+" , "+val.getOccupation()+" , "+val.getCustomerId().getCustomerId());
+		}
 	}
 }
