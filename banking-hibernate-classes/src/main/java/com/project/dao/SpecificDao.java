@@ -9,7 +9,10 @@ import javax.persistence.Query;
 import com.project.entities.UserGeneralDetail;
 import com.project.entities.UserTransactionDetail;
 
+//This class contains all the queries(select/fetch) which will be used by ServiceClass class to fetch required details 
+
 public class SpecificDao extends GenericDao{
+	//Use to fetch balance based on account number
 	public double fetchBalance(long acno) {
 		EntityManagerFactory emf = null;
 		EntityManager em = null;
@@ -30,6 +33,7 @@ public class SpecificDao extends GenericDao{
 
 	}
 
+	//based on remarks get all the transaction details
 	public List<UserTransactionDetail> fetchSuccessfulTransaction(String remark) {
 		EntityManagerFactory emf = null;
 		EntityManager em = null;
@@ -51,6 +55,7 @@ public class SpecificDao extends GenericDao{
 
 	}
 	
+	//get all the general details of user based on given aadhaar card
 	public List<UserGeneralDetail> fetchUserDetails(long aadhaar) {
 		EntityManagerFactory emf = null;
 		EntityManager em = null;

@@ -10,6 +10,9 @@ import com.project.dao.SpecificDao;
 import com.project.entities.UserGeneralDetail;
 import com.project.entities.UserTransactionDetail;
 
+/*
+ * To test all the methods under specificDao
+ */
 public class QueryDao {
 
 	@Test

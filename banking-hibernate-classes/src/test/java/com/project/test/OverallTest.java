@@ -19,6 +19,9 @@ import com.project.enums.AccountType;
 import com.project.enums.Title;
 import com.project.enums.TransactionType;
 
+/*Test carried out to check the working of hibernate mapping ie GenericDao class methods 
+ *  basically contains the details to be inserted into database
+ */
 
 public class OverallTest {
 
