@@ -176,27 +176,38 @@ public class OverallTest {
 	@Test
 	public void addTransaction() {
 		GenericDao dao = new GenericDao();
-		
-		UserAccountType accType = (UserAccountType)dao.fetch(UserAccountType.class, (long)1085);
-		UserAccountType accType2 = (UserAccountType)dao.fetch(UserAccountType.class, (long)1084);
-		
-		UserTransactionDetail transaction  = new UserTransactionDetail();
-		transaction.setAmount(2200);
-		transaction.setModeOfTransaction(TransactionType.IMPS);
-		transaction.setMaturityInstruction("Bank Instruction");
-		transaction.setTransactionDate(LocalDateTime.now());;
-		transaction.setRemarks(" loan amount ");
-		transaction.setStatus("Transaction Successful...");
-		transaction.setFromAccount(accType);
-		transaction.setToAccount(accType2);
-	   
-		List<UserTransactionDetail> t =new ArrayList<UserTransactionDetail>();
-		t.add(transaction);
-		
-		accType.setFromTransaction(t);
-		accType2.setToTransaction(t);
-		
-		dao.save(transaction);
+
+		UserAccountType accType = (UserAccountType)dao.fetch(UserAccountType.class, (long)1002);
+		UserAccountType accType2 = (UserAccountType)dao.fetch(UserAccountType.class, (long)1003);
+
+		//if(accType.getBankBalance()>1000) {
+			
+			//accType.setBankBalance(accType.getBankBalance()-1000);
+			//accType2.setBankBalance(accType2.getBankBalance()+1000);
+			
+			UserTransactionDetail transaction  = new UserTransactionDetail();
+			transaction.setAmount(1000);
+			transaction.setModeOfTransaction(TransactionType.IMPS);
+			transaction.setMaturityInstruction("Bank Instruction");
+			transaction.setTransactionDate(LocalDateTime.now());;
+			transaction.setRemarks(" loan amount ");
+			transaction.setStatus("Transaction Successful...");
+			transaction.setFromAccount(accType);
+			transaction.setToAccount(accType2);
+
+			List<UserTransactionDetail> t =new ArrayList<UserTransactionDetail>();
+			t.add(transaction);
+
+			accType.setFromTransaction(t);
+			accType2.setToTransaction(t);
+			
+			//dao.save(accType);
+			//dao.save(accType2);
+			
+			dao.save(transaction);
+		//}
+		//else 
+			//System.out.println("Insufficient Bank Balance");
 		
 	}
 	
