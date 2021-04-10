@@ -38,10 +38,10 @@ public class UserAccountType {
 	@Column(name="balance")
 	private double bankBalance;
 	
-	@OneToMany(mappedBy = "fromAccount" ,cascade =CascadeType.ALL)
+	@OneToMany(mappedBy = "fromAccount")
 	private List<UserTransactionDetail> fromTransaction;
 	
-	@OneToMany(mappedBy = "toAccount" ,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "toAccount")
 	private List<UserTransactionDetail> toTransaction;
 	
 	@OneToMany(mappedBy = "compoundKey.userAccountNo",cascade =CascadeType.ALL)

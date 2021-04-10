@@ -30,18 +30,18 @@ public class ServiceClassTest {
 		ServiceClass test = new ServiceClass();
 		
 		RegistrationDetail add = new RegistrationDetail();
-		add.setTitle(Title.Ms);
-		add.setFirstName("Neha");
-		add.setLastName("Singh");
-		add.setFatherName("Manoj");
-		add.setMobileNo(1234568525);//range problem
-		add.setEmailId("neha@gmail.com");
-		add.setAadhaarNo(8277103);//range problem
-		add.setPanCard("NEH8763");
-		add.setDateOfBirth(LocalDate.of(1998,10,9));
-		add.setResidentialAddress("Ambernath, Mumbai 400098");
-		add.setPermanent("UP");
-		add.setOccupation("Medical");
+		add.setTitle(Title.Mr);
+		add.setFirstName("Rohit");
+		add.setLastName("Gupta");
+		add.setFatherName("Raju");
+		add.setMobileNo(1852048525);//range problem
+		add.setEmailId("rohit@gmail.com");
+		add.setAadhaarNo(74107103);//range problem
+		add.setPanCard("ROH8763");
+		add.setDateOfBirth(LocalDate.of(1998,07,14));
+		add.setResidentialAddress("Kalina, Mumbai 400098");
+		add.setPermanent("Santacruz");
+		add.setOccupation("Developer");
 		add.setIncomeSource("Self");
 		add.setAnnualIncome(400000);
 		
@@ -53,7 +53,7 @@ public class ServiceClassTest {
 		
 		GenericDao dao = new GenericDao();
 		
-		RegistrationDetail user = (RegistrationDetail) dao.fetch(RegistrationDetail.class, (long)1003);
+		RegistrationDetail user = (RegistrationDetail) dao.fetch(RegistrationDetail.class, (long)29);
 		
 		ServiceClass test = new ServiceClass();
 		test.onRequestApprove(user, "neha@123", "neha@123tr", 10000);
@@ -63,7 +63,7 @@ public class ServiceClassTest {
 	public void transactionTest() {
 		ServiceClass test = new ServiceClass();
 		
-		test.transaction((long)1000, (long)1003, 1000);
+		test.transaction((long)1026, (long)1027, 1000);
 	}
 }
 
