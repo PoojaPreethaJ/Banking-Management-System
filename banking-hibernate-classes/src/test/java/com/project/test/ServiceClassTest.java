@@ -53,7 +53,7 @@ public class ServiceClassTest {
 		
 		GenericDao dao = new GenericDao();
 		
-		RegistrationDetail user = (RegistrationDetail) dao.fetch(RegistrationDetail.class, (long)22);
+		RegistrationDetail user = (RegistrationDetail) dao.fetch(RegistrationDetail.class, (long)4);
 		
 		ServiceClass test = new ServiceClass();
 		test.onRequestApprove(user, "140798", "rg140798", 10000);
@@ -63,7 +63,7 @@ public class ServiceClassTest {
 	public void transactionTest() {
 		ServiceClass test = new ServiceClass();
 		
-		test.transaction((long)1020, (long)1021, 1000);
+		test.transaction((long)1000, (long)1003, 1000);
 	}
 }
 

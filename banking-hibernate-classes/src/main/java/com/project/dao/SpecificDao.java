@@ -6,6 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.project.entities.UserAddPayee;
 import com.project.entities.UserGeneralDetail;
 import com.project.entities.UserTransactionDetail;
 
@@ -74,6 +75,25 @@ public class SpecificDao extends GenericDao{
 					em.close();
 					emf.close();
 					}
-
 	}
+	
+	public List<UserAddPayee> fetchBeneficiaryDetails(long beneficiaryAccountNo){
+	EntityManagerFactory emf = null;
+	EntityManager em = null;
+	try {
+		emf = Persistence.createEntityManagerFactory("oracleTest");
+		em = emf.createEntityManager();
+		
+		String jpql = "select beneficiary_account_no, beneficiary_name, user_account_no, nick_name from tbl_add_payee where beneficiary_account_no = :ban";
+		Query q= em.createQuery(jpql);
+		 q.setParameter("ban",beneficiaryAccountNo);
+		List<UserAddPayee> list = q.getResultList();
+
+		return list;
+	}
+	finally {
+		em.close();
+		emf.close();
+		}
+}
 }

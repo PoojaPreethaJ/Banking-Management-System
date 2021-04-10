@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.project.dao.SpecificDao;
+import com.project.entities.UserAddPayee;
 import com.project.entities.UserGeneralDetail;
 import com.project.entities.UserTransactionDetail;
 
@@ -40,6 +41,16 @@ public class QueryDao {
 		assertNotNull(list);
 		for(UserGeneralDetail val:list) {
 			System.out.println(val.getGrossIncome()+" , "+val.getOccupation()+" , "+val.getCustomerId().getCustomerId());
+		}
+	}
+	
+	@Test
+	public void fetchBeneficiaryDetailTest() {
+		SpecificDao dao = new SpecificDao();
+		List<UserAddPayee> list =dao.fetchBeneficiaryDetails(1000);
+		assertNotNull(list);
+		for(UserAddPayee val:list) {
+			System.out.println(val.getCompoundKey().getBeneficiaryAccountNo()+" , "+val.getBeneficiaryName()+" , "+val.getNickName());
 		}
 	}
 }
