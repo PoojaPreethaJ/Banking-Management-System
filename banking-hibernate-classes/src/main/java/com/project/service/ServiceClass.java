@@ -34,27 +34,33 @@ public class ServiceClass implements Service{
 		UserAccountDetail ud = new UserAccountDetail();
 		ud.setLoginPassword(loginPassword);
 		ud.setTransactionPassword(transactionPassword);
-		ud.setRegistration(userRegistration);
+		ud.setRegistration(userRegistration);//fk
 		
-		userRegistration.setUserAccountDetail(ud);
-		dao.save(ud);
+		userRegistration.setUserAccountDetail(ud);//that side mapping
+		//dao.save(ud);//no needed due to cascading
 		
 		UserAccountType account = new UserAccountType();
 		account.setAccountType(AccountType.Savings);
 		account.setBankBalance(amount);
-		account.setCustomerId(ud);
-		dao.save(account);
+		account.setCustomerId(ud);//fk
+		
+		List<UserAccountType> accounts = new ArrayList<UserAccountType>();
+		accounts.add(account);
+		ud.setAccounts(accounts);//that side mapping
+		//dao.save(account);//no needed due to cascading
 		
 		UserGeneralDetail details = new UserGeneralDetail();
-		details.setAadhaarNo(userRegistration.getAadhaarNo());
-		details.setCustomerId(ud);
+		details.setAadhaarNo(userRegistration.getAadhaarNo());//pk
+		details.setCustomerId(ud);//fk
 		details.setDateOfBirth(userRegistration.getDateOfBirth());
 		details.setMailingAddress(userRegistration.getResidentialAddress());
 		details.setPanCard(userRegistration.getPanCard());
 		details.setOccupation(userRegistration.getOccupation());
 		details.setGrossIncome(userRegistration.getAnnualIncome());
 		
-		dao.save(details);
+		ud.setGeneralDetail(details);//that side mapping
+		
+		dao.save(ud);//due to cascading details will be saved in child tables automatically
 	}
 
 	public void transaction(long fromAccount, long toAccount, double amount) {

@@ -25,7 +25,7 @@ public class UserAccountDetail {
 	@Column(name="customer_id")
 	private long customerId;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name="service_reference_no")
 	private RegistrationDetail registration ;
 	
@@ -82,6 +82,14 @@ public class UserAccountDetail {
 
 	public void setAccounts(List<UserAccountType> accounts) {
 		this.accounts = accounts;
+	}
+
+	public UserGeneralDetail getGeneralDetail() {
+		return generalDetail;
+	}
+
+	public void setGeneralDetail(UserGeneralDetail generalDetail) {
+		this.generalDetail = generalDetail;
 	}
 	
 	

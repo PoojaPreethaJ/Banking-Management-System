@@ -28,7 +28,7 @@ public class UserAccountType {
 	@SequenceGenerator(sequenceName = "reference_seq3", initialValue = 1000, allocationSize = 1, name="new_seq3")	
 	private long accountNumber;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="customer_id")
 	private UserAccountDetail customerId;
 	

@@ -22,7 +22,7 @@ public class UserGeneralDetail implements Serializable{
 	@Column(name="aadhaar_card")
 	private long aadhaarNo;
 	
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne
 	@JoinColumn(name="customer_id")
 	private UserAccountDetail customerId;
 	
