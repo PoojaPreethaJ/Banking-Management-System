@@ -66,7 +66,7 @@ public class ServiceClassTest {
 	public void transactionTest() {
 		ServiceClass test = new ServiceClass();
 		
-		test.transaction((long)1102, (long)1103, 7800);
+		test.transaction((long)1102, (long)1103, 800);
 	}
 	
 	

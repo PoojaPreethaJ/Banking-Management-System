@@ -85,7 +85,7 @@ public class ServiceClass implements Service{
 			trx.setTransactionDate(LocalDateTime.now());
 			trx.setMaturityInstruction("xyz");
 			trx.setModeOfTransaction(TransactionType.NEFT);
-			trx.setRemarks("Gift Balance");
+			trx.setRemarks("Gift Balance Debit");
 			trx.setStatus("Transaction Successful");
 			
 			List<UserTransactionDetail> t = new ArrayList<UserTransactionDetail>();
@@ -102,20 +102,20 @@ public class ServiceClass implements Service{
 			dao.save(acc2);
 			
 			UserTransactionDetail trx1 = new UserTransactionDetail();
-			trx1.setToAccount(acc1);
-			trx1.setFromAccount(acc2);
+			trx1.setToAccount(acc2);
+			trx1.setFromAccount(acc1);
 			trx1.setAmount(amount);
 			trx1.setTransactionDate(LocalDateTime.now());
 			trx1.setMaturityInstruction("xyz");
 			trx1.setModeOfTransaction(TransactionType.NEFT);
-			trx1.setRemarks("Gift Balance");
+			trx1.setRemarks("Gift Balance Credit");
 			trx1.setStatus("Transaction Successful");
 			
 			List<UserTransactionDetail> t1 = new ArrayList<UserTransactionDetail>();
 			t1.add(trx1);
 			
-			acc2.setFromTransaction(t1);
-			acc1.setToTransaction(t1);
+			acc1.setFromTransaction(t1);
+			acc2.setToTransaction(t1);
 			
 			dao.save(trx1);
 			
