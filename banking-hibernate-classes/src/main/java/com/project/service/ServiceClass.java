@@ -101,8 +101,8 @@ public class ServiceClass implements Service{
 			dao.save(acc2);
 			
 			UserTransactionDetail trx1 = new UserTransactionDetail();
-			trx1.setFromAccount(acc2);
 			trx1.setToAccount(acc1);
+			trx1.setFromAccount(acc2);
 			trx1.setAmount(amount);
 			trx1.setTransactionDate(LocalDateTime.now());
 			trx1.setMaturityInstruction("xyz");
@@ -122,9 +122,12 @@ public class ServiceClass implements Service{
 		}
 	}
 
-	public List<UserTransactionDetail> getTransactionsOfUser(int accountNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<UserTransactionDetail> getTransactionsOfUser(long accountNo) {
+		
+		SpecificDao dao = new SpecificDao();
+		
+		List<UserTransactionDetail> list = dao.fetchTransactions(accountNo);
+		return list;
 	}
 	
 	public List<UserGeneralDetail> getDetailByAadhaar(long aadhaar){

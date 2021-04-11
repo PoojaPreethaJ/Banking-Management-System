@@ -9,6 +9,7 @@ import org.junit.Test;
 import com.project.dao.GenericDao;
 import com.project.entities.RegistrationDetail;
 import com.project.entities.UserGeneralDetail;
+import com.project.entities.UserTransactionDetail;
 import com.project.enums.Title;
 import com.project.service.ServiceClass;
 
@@ -63,7 +64,18 @@ public class ServiceClassTest {
 	public void transactionTest() {
 		ServiceClass test = new ServiceClass();
 		
-		test.transaction((long)1026, (long)1027, 1000);
+		test.transaction((long)1027, (long)1026, 1000);
+	}
+	
+	@Test
+	public void displayStatement() {
+		
+		ServiceClass test = new ServiceClass();
+		
+		List<UserTransactionDetail> list = test.getTransactionsOfUser(1027);
+		for(UserTransactionDetail trx : list) {
+			System.out.println(trx.getFromAccount()+" , "+trx.getToAccount()+" , "+trx.getAmount()+" , "+trx.getModeOfTransaction());
+		}
 	}
 }
 

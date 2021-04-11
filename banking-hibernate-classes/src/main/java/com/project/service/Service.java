@@ -11,6 +11,6 @@ public interface Service {
 	public void register(RegistrationDetail userRegistration);
 	public void onRequestApprove(RegistrationDetail userRegistration, String loginPassword, String transactionPassword, double amount);
 	public void transaction(long fromAccount, long toAccount, double amount);
-	public List<UserTransactionDetail> getTransactionsOfUser(int accountNo);
+	public List<UserTransactionDetail> getTransactionsOfUser(long accountNo);
 	public List<UserGeneralDetail> getDetailByAadhaar(long aadhaar);
 }

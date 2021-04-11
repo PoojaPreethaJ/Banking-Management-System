@@ -34,17 +34,17 @@ public class SpecificDao extends GenericDao{
 
 	}
 
-	//based on remarks get all the transaction details
-	public List<UserTransactionDetail> fetchSuccessfulTransaction(String remark) {
+	//based on account number get all the transaction details
+	public List<UserTransactionDetail> fetchTransactions(long acno) {
 		EntityManagerFactory emf = null;
 		EntityManager em = null;
 				try {
 					 emf = Persistence.createEntityManagerFactory("oracleTest");
-					em = emf.createEntityManager();
+					 em = emf.createEntityManager();
 					
-					String jpql = "select tr from UserTransactionDetail tr where tr.remarks = :rm";
+					String jpql = "select tr from UserTransactionDetail tr where tr.fromAccount = :acno";
 					Query q= em.createQuery(jpql);
-					q.setParameter("rm",remark);
+					q.setParameter("acno",acno);
 					List<UserTransactionDetail> list = q.getResultList();
 					
 					return list;

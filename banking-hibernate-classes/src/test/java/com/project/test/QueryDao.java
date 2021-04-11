@@ -27,7 +27,7 @@ public class QueryDao {
 	@Test
 	public void fetchSuccessfulTransactionTest() {
 		SpecificDao dao = new SpecificDao();
-		List<UserTransactionDetail> list =dao.fetchSuccessfulTransaction(" loan amount ");
+		List<UserTransactionDetail> list =dao.fetchTransactions(101);
 		assertNotNull(list);
 		for(UserTransactionDetail val:list) {
 			System.out.println(val.getModeOfTransaction()+" , "+val.getFromAccount().getAccountNumber()+" , "+val.getToAccount().getAccountNumber()+" , "+val.getStatus());
