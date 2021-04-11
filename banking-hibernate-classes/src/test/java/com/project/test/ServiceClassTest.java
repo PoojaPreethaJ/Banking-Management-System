@@ -32,19 +32,19 @@ public class ServiceClassTest {
 		
 		RegistrationDetail add = new RegistrationDetail();
 		add.setTitle(Title.Mr);
-		add.setFirstName("Rohit");
-		add.setLastName("Gupta");
-		add.setFatherName("Raju");
-		add.setMobileNo(1852048525);//range problem
-		add.setEmailId("rohit@gmail.com");
-		add.setAadhaarNo(74107103);//range problem
-		add.setPanCard("ROH8763");
-		add.setDateOfBirth(LocalDate.of(1998,07,14));
-		add.setResidentialAddress("Kalina, Mumbai 400098");
-		add.setPermanent("Santacruz");
-		add.setOccupation("Developer");
+		add.setFirstName("Pooja");
+		add.setLastName("Preetha");
+		add.setFatherName("Jothiappan");
+		add.setMobileNo(123456789);//range problem
+		add.setEmailId("pooja@gmail.com");
+		add.setAadhaarNo(55555);//range problem
+		add.setPanCard("POOJ2398");
+		add.setDateOfBirth(LocalDate.of(1998,02,23));
+		add.setResidentialAddress("Basavanagar, Bangalore 560037");
+		add.setPermanent("Bangalore");
+		add.setOccupation("full stack developer");
 		add.setIncomeSource("Self");
-		add.setAnnualIncome(400000);
+		add.setAnnualIncome(500000);
 		
 		test.register(add);
 	}
@@ -54,17 +54,17 @@ public class ServiceClassTest {
 		
 		GenericDao dao = new GenericDao();
 		
-		RegistrationDetail user = (RegistrationDetail) dao.fetch(RegistrationDetail.class, (long)29);
+		RegistrationDetail user = (RegistrationDetail) dao.fetch(RegistrationDetail.class, (long)39);
 		
 		ServiceClass test = new ServiceClass();
-		test.onRequestApprove(user, "neha@123", "neha@123tr", 10000);
+		test.onRequestApprove(user, "pooja@123", "pooja@123tr", 7000);
 	}
 	
 	@Test
 	public void transactionTest() {
 		ServiceClass test = new ServiceClass();
 		
-		test.transaction((long)1027, (long)1028, 1000);
+		test.transaction((long)1102, (long)1103, 200);
 	}
 	
 	@Test
@@ -72,9 +72,9 @@ public class ServiceClassTest {
 		
 		ServiceClass test = new ServiceClass();
 		
-		List<UserTransactionDetail> list = test.getTransactionsOfUser(1027);
+		List<UserTransactionDetail> list = test.getTransactionsOfUser(1102);
 		for(UserTransactionDetail trx : list) {
-			System.out.println(trx.getFromAccount()+" , "+trx.getToAccount()+" , "+trx.getAmount()+" , "+trx.getModeOfTransaction());
+			System.out.println(trx.getFromAccount().getAccountNumber()+" , "+trx.getToAccount().getAccountNumber()+" , "+trx.getAmount()+" , "+trx.getModeOfTransaction());
 		}
 	}
 }
