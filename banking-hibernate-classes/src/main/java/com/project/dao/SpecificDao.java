@@ -42,7 +42,7 @@ public class SpecificDao extends GenericDao{
 					 emf = Persistence.createEntityManagerFactory("oracleTest");
 					 em = emf.createEntityManager();
 					
-					String jpql = "select tr from UserTransactionDetail tr where tr.fromAccount = :acno";
+					String jpql = "select tr from UserTransactionDetail tr where tr.fromAccount.accountNumber = :acno";
 					Query q= em.createQuery(jpql);
 					q.setParameter("acno",acno);
 					List<UserTransactionDetail> list = q.getResultList();
