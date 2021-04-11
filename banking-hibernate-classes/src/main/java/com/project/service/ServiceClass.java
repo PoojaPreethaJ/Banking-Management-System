@@ -1,5 +1,6 @@
 package com.project.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -127,6 +128,14 @@ public class ServiceClass implements Service{
 		SpecificDao dao = new SpecificDao();
 		
 		List<UserTransactionDetail> list = dao.fetchTransactions(accountNo);
+		return list;
+	}
+	
+	public List<UserTransactionDetail> getTransactionsOfUserByRange(LocalDateTime fromDate,LocalDateTime toDate) {
+		
+		SpecificDao dao = new SpecificDao();
+		
+		List<UserTransactionDetail> list = dao.fetchTransactionsByRange(fromDate,toDate);
 		return list;
 	}
 	

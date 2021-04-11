@@ -1,6 +1,8 @@
 package com.project.test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,8 +66,10 @@ public class ServiceClassTest {
 	public void transactionTest() {
 		ServiceClass test = new ServiceClass();
 		
-		test.transaction((long)1102, (long)1103, 200);
+		test.transaction((long)1102, (long)1103, 7800);
 	}
+	
+	
 	
 	@Test
 	public void displayStatement() {
@@ -77,5 +81,17 @@ public class ServiceClassTest {
 			System.out.println(trx.getFromAccount().getAccountNumber()+" , "+trx.getToAccount().getAccountNumber()+" , "+trx.getAmount()+" , "+trx.getModeOfTransaction());
 		}
 	}
+	
+	@Test
+	public void displayStatementByRange() {
+		
+		ServiceClass test = new ServiceClass();
+		
+		List<UserTransactionDetail> list = test.getTransactionsOfUserByRange(LocalDateTime.of(LocalDate.of(2021,04,11), LocalTime.of(00,00)),LocalDateTime.of(LocalDate.of(2021,04,11), LocalTime.of(23,59)));
+		for(UserTransactionDetail trx : list) {
+			System.out.println(trx.getFromAccount().getAccountNumber()+" , "+trx.getToAccount().getAccountNumber()+" , "+trx.getAmount()+" , "+trx.getModeOfTransaction());
+		}
+	}
+
 }
 

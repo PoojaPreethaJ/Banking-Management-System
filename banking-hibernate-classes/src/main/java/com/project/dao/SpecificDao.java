@@ -1,4 +1,6 @@
 package com.project.dao;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -55,6 +57,30 @@ public class SpecificDao extends GenericDao{
 					}
 
 	}
+	
+	//based on date get all the transaction details
+		public List<UserTransactionDetail> fetchTransactionsByRange(LocalDateTime fromDate,LocalDateTime toDate) {
+			EntityManagerFactory emf = null;
+			EntityManager em = null;
+					try {
+						 emf = Persistence.createEntityManagerFactory("oracleTest");
+						 em = emf.createEntityManager();
+						
+						String jpql = "select tr from UserTransactionDetail tr where tr.transactionDate >=  :start AND tr.transactionDate <= :end ";
+						Query q= em.createQuery(jpql);
+						q.setParameter("start",fromDate);
+						q.setParameter("end",toDate);
+						
+						List<UserTransactionDetail> list = q.getResultList();
+						
+						return list;
+					}
+					finally {
+						em.close();
+						emf.close();
+						}
+
+		}
 	
 	//get all the general details of user based on given aadhaar card
 	public List<UserGeneralDetail> fetchUserDetails(long aadhaar) {
