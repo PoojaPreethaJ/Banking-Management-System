@@ -103,8 +103,8 @@ public class ServiceClass implements Service{
 			dao.save(acc2);
 			
 			Transaction trx1 = new Transaction();
-			trx1.setToAccount(acc2);
-			trx1.setFromAccount(acc1);
+			trx1.setToAccount(acc1);
+			trx1.setFromAccount(acc2);
 			trx1.setAmount(amount);
 			trx1.setTransactionDate(LocalDateTime.now());
 			trx1.setMaturityInstruction("xyz");
