@@ -106,6 +106,12 @@ public class AccountDetail {
 	public void setToTransactions(List<Transaction> toTransactions) {
 		this.toTransactions = toTransactions;
 	}
-	
-	
+
+	public List<Transaction> getFromTransactions() {
+		return fromTransactions;
+	}
+
+	public List<Transaction> getToTransactions() {
+		return toTransactions;
+	}
 }

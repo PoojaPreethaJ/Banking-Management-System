@@ -9,6 +9,8 @@ import java.util.List;
 import org.junit.Test;
 
 import com.project.dao.GenericDao;
+import com.project.entities.Account;
+import com.project.entities.AccountDetail;
 import com.project.entities.GeneralDetail;
 import com.project.entities.Registration;
 import com.project.entities.Transaction;
@@ -92,6 +94,20 @@ public class ServiceClassTest {
 			System.out.println(trx.getFromAccount().getAccountNumber()+" , "+trx.getToAccount().getAccountNumber()+" , "+trx.getAmount()+" , "+trx.getModeOfTransaction());
 		}
 	}
+	
+	@Test
+	public void displayAllSuspiciousAccounts() {
+	
+		    ServiceClass test = new ServiceClass();
+			List<AccountDetail> list = test.getSuspiciousAccounts(100);
+			for(AccountDetail a : list) {
+			System.out.println(a.getAccountNumber());
+			List<Transaction> listt = a.getToTransactions();
+			for(Transaction t : listt) {
+				System.out.println(t.getTransactionId()+" , "+t.getAmount());
+			}
+	}
 
+}
 }
 

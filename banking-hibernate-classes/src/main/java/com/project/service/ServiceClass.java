@@ -144,4 +144,9 @@ public class ServiceClass implements Service{
 		SpecificDao dao = new SpecificDao();
 		return dao.fetchUserDetails(aadhaar);	
 	}
+	
+	public List<AccountDetail> getSuspiciousAccounts(double amount){
+		SpecificDao dao = new SpecificDao();
+		return dao.fetchAccountsByTransactionAmount(amount);
+	}
 }

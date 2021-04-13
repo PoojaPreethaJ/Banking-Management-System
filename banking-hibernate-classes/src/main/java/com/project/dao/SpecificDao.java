@@ -8,6 +8,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.project.entities.Account;
+import com.project.entities.AccountDetail;
 import com.project.entities.GeneralDetail;
 import com.project.entities.Payee;
 import com.project.entities.Transaction;
@@ -122,5 +124,24 @@ public class SpecificDao extends GenericDao{
 		em.close();
 		emf.close();
 		}
+}
+	public List<AccountDetail> fetchAccountsByTransactionAmount(double amount) {
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+		try {
+			emf = Persistence.createEntityManagerFactory("oracleTest");
+			em = emf.createEntityManager();
+
+			String jpql = "select acc from AccountDetail acc join fetch acc.toTransactions tx where tx.amount = :amt and tx.remarks like '%Credit'";
+			Query q = em.createQuery(jpql);		
+			q.setParameter("amt",amount);
+			List<AccountDetail> list = q.getResultList();
+			return list;
+		}
+		finally {
+			em.close();
+			emf.close();
+		}
+
 }
 }
