@@ -2,15 +2,15 @@ package com.project.service;
 
 import java.util.List;
 
-import com.project.entities.RegistrationDetail;
-import com.project.entities.UserGeneralDetail;
-import com.project.entities.UserTransactionDetail;
+import com.project.entities.GeneralDetail;
+import com.project.entities.Registration;
+import com.project.entities.Transaction;
 
 public interface Service {
 
-	public void register(RegistrationDetail userRegistration);
-	public void onRequestApprove(RegistrationDetail userRegistration, String loginPassword, String transactionPassword, double amount);
+	public void register(Registration userRegistration);
+	public void onRequestApprove(Registration userRegistration, String loginPassword, String transactionPassword, double amount);
 	public void transaction(long fromAccount, long toAccount, double amount);
-	public List<UserTransactionDetail> getTransactionsOfUser(long accountNo);
-	public List<UserGeneralDetail> getDetailByAadhaar(long aadhaar);
+	public List<Transaction> getTransactionsOfUser(long accountNo);
+	public List<GeneralDetail> getDetailByAadhaar(long aadhaar);
 }

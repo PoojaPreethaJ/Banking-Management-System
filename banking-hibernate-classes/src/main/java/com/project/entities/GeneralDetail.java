@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tbl_general_detail")
-public class UserGeneralDetail implements Serializable{
+public class GeneralDetail implements Serializable{
 
 	@Id
 	@Column(name="aadhaar_card")
@@ -24,7 +24,10 @@ public class UserGeneralDetail implements Serializable{
 	
 	@OneToOne
 	@JoinColumn(name="customer_id")
-	private UserAccountDetail customerId;
+	private Account account;
+	
+	@Column(name="customer_name")
+	private String fullName;
 	
 	@Column(name="pan")
 	private String panCard;
@@ -60,12 +63,7 @@ public class UserGeneralDetail implements Serializable{
 	public void setGstNumber(String gstNumber) {
 		this.gstNumber = gstNumber;
 	}
-	public UserAccountDetail getCustomerId() {
-		return customerId;
-	}
-	public void setCustomerId(UserAccountDetail customerId) {
-		this.customerId = customerId;
-	}
+	
 	public String getPanCard() {
 		return panCard;
 	}
@@ -102,6 +100,19 @@ public class UserGeneralDetail implements Serializable{
 	public void setGrossIncome(double grossIncome) {
 		this.grossIncome = grossIncome;
 	}
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+	public Account getAccount() {
+		return account;
+	}
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+	
 	
 	
 	

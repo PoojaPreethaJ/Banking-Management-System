@@ -8,15 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.project.compoundkey.AddPayeeCompoundKey;
+import com.project.compoundkey.PayeeCompound;
 
 @Entity
-@Table(name="tbl_add_payee")
-public class UserAddPayee {
+@Table(name="tbl_payee")
+public class Payee {
 
 	@EmbeddedId
 	@Column(name="beneficiary_id")
-	private AddPayeeCompoundKey compoundKey;
+	private PayeeCompound compoundKey;
 	
 	@Column(name="beneficiary_name")
 	private String beneficiaryName;
@@ -24,11 +24,11 @@ public class UserAddPayee {
 	@Column(name="nick_name")
 	private String nickName;
 
-	public AddPayeeCompoundKey getCompoundKey() {
+	public PayeeCompound getCompoundKey() {
 		return compoundKey;
 	}
 
-	public void setCompoundKey(AddPayeeCompoundKey compoundKey) {
+	public void setCompoundKey(PayeeCompound compoundKey) {
 		this.compoundKey = compoundKey;
 	}
 

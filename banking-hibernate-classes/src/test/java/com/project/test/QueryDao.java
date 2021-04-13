@@ -7,9 +7,9 @@ import java.util.List;
 import org.junit.Test;
 
 import com.project.dao.SpecificDao;
-import com.project.entities.UserAddPayee;
-import com.project.entities.UserGeneralDetail;
-import com.project.entities.UserTransactionDetail;
+import com.project.entities.GeneralDetail;
+import com.project.entities.Payee;
+import com.project.entities.Transaction;
 
 /*
  * To test all the methods under specificDao
@@ -27,9 +27,9 @@ public class QueryDao {
 	@Test
 	public void fetchSuccessfulTransactionTest() {
 		SpecificDao dao = new SpecificDao();
-		List<UserTransactionDetail> list =dao.fetchTransactions(101);
+		List<Transaction> list =dao.fetchTransactions(101);
 		assertNotNull(list);
-		for(UserTransactionDetail val:list) {
+		for(Transaction val:list) {
 			System.out.println(val.getModeOfTransaction()+" , "+val.getFromAccount().getAccountNumber()+" , "+val.getToAccount().getAccountNumber()+" , "+val.getStatus());
 		}
 	}
@@ -37,20 +37,20 @@ public class QueryDao {
 	@Test
 	public void fetchDetailTest() {
 		SpecificDao dao = new SpecificDao();
-		List<UserGeneralDetail> list =dao.fetchUserDetails(7777);
+		List<GeneralDetail> list =dao.fetchUserDetails(7777);
 		assertNotNull(list);
-		for(UserGeneralDetail val:list) {
-			System.out.println(val.getGrossIncome()+" , "+val.getOccupation()+" , "+val.getCustomerId().getCustomerId());
+		for(GeneralDetail val:list) {
+			System.out.println(val.getGrossIncome()+" , "+val.getOccupation()+" , "+val.getAccount().getCustomerId());
 		}
 	}
 	
 	@Test
 	public void fetchBeneficiaryDetailTest() {
 		SpecificDao dao = new SpecificDao();
-		List<UserAddPayee> list =dao.fetchBeneficiaryDetails(1000);
+		List<Payee> list =dao.fetchBeneficiaryDetails(1000);
 		assertNotNull(list);
-		for(UserAddPayee val:list) {
-			System.out.println(val.getCompoundKey().getBeneficiaryAccountNo()+" , "+val.getBeneficiaryName()+" , "+val.getNickName());
+		for(Payee val:list) {
+			System.out.println(val.getCompoundKey().getBeneficiaryAccount()+" , "+val.getBeneficiaryName()+" , "+val.getNickName());
 		}
 	}
 }

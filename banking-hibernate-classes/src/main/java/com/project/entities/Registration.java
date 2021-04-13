@@ -16,7 +16,7 @@ import com.project.enums.Title;
 
 @Entity
 @Table(name="tbl_registration_detail")
-public class RegistrationDetail {
+public class Registration {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "new_seq1")
 	@SequenceGenerator(sequenceName = "reference_seq1", initialValue = 1, allocationSize = 1, name="new_seq1")	
@@ -75,7 +75,7 @@ public class RegistrationDetail {
 	private double annualIncome;
 
 	@OneToOne(mappedBy = "registration",cascade = CascadeType.ALL)
-	private UserAccountDetail userAccountDetail;
+	private Account account;
 	
 	
 	public String getRevenueRegisterNo() {
@@ -94,12 +94,12 @@ public class RegistrationDetail {
 		this.gstNumber = gstNumber;
 	}
 
-	public UserAccountDetail getUserAccountDetail() {
-		return userAccountDetail;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setUserAccountDetail(UserAccountDetail userAccountDetail) {
-		this.userAccountDetail = userAccountDetail;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public long getReferenceNo() {

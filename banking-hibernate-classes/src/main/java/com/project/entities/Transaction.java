@@ -21,7 +21,7 @@ import com.project.enums.TransactionType;
 
 @Entity
 @Table(name="tbl_transaction_detail")
-public class UserTransactionDetail implements Serializable{
+public class Transaction implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "new_seq6")
@@ -31,11 +31,11 @@ public class UserTransactionDetail implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="from_account")
-	private UserAccountType fromAccount;
+	private AccountDetail fromAccount;
 	
 	@ManyToOne
 	@JoinColumn(name="to_account")
-	private UserAccountType toAccount;
+	private AccountDetail toAccount;
 	
 	@Column(name="tr_amount")
 	private double amount;
@@ -62,16 +62,16 @@ public class UserTransactionDetail implements Serializable{
 		this.transactionId = transactionId;
 	}
 	
-	public UserAccountType getFromAccount() {
+	public AccountDetail getFromAccount() {
 		return fromAccount;
 	}
-	public void setFromAccount(UserAccountType fromAccount) {
+	public void setFromAccount(AccountDetail fromAccount) {
 		this.fromAccount = fromAccount;
 	}
-	public UserAccountType getToAccount() {
+	public AccountDetail getToAccount() {
 		return toAccount;
 	}
-	public void setToAccount(UserAccountType toAccount) {
+	public void setToAccount(AccountDetail toAccount) {
 		this.toAccount = toAccount;
 	}
 	public double getAmount() {

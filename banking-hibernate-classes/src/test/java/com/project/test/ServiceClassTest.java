@@ -9,9 +9,9 @@ import java.util.List;
 import org.junit.Test;
 
 import com.project.dao.GenericDao;
-import com.project.entities.RegistrationDetail;
-import com.project.entities.UserGeneralDetail;
-import com.project.entities.UserTransactionDetail;
+import com.project.entities.GeneralDetail;
+import com.project.entities.Registration;
+import com.project.entities.Transaction;
 import com.project.enums.Title;
 import com.project.service.ServiceClass;
 
@@ -21,10 +21,10 @@ public class ServiceClassTest {
 	@Test
 	public void fetchDetailByAadhaarTest() {
 		ServiceClass sc =new ServiceClass();
-		List<UserGeneralDetail> detail = new ArrayList<UserGeneralDetail>();
+		List<GeneralDetail> detail = new ArrayList<GeneralDetail>();
 		detail = sc.getDetailByAadhaar(7777);
-		for(UserGeneralDetail val:detail) {
-			System.out.println(val.getCustomerId().getCustomerId()+" , "+val.getGrossIncome());
+		for(GeneralDetail val:detail) {
+			System.out.println(val.getAccount().getCustomerId()+" , "+val.getGrossIncome());
 		}
 	}
 	
@@ -32,21 +32,21 @@ public class ServiceClassTest {
 	public void registerUserTest() {
 		ServiceClass test = new ServiceClass();
 		
-		RegistrationDetail add = new RegistrationDetail();
+		Registration add = new Registration();
 		add.setTitle(Title.Mr);
-		add.setFirstName("Pooja");
-		add.setLastName("Preetha");
-		add.setFatherName("Jothiappan");
-		add.setMobileNo(123456789);//range problem
-		add.setEmailId("pooja@gmail.com");
-		add.setAadhaarNo(55555);//range problem
-		add.setPanCard("POOJ2398");
-		add.setDateOfBirth(LocalDate.of(1998,02,23));
-		add.setResidentialAddress("Basavanagar, Bangalore 560037");
-		add.setPermanent("Bangalore");
-		add.setOccupation("full stack developer");
+		add.setFirstName("Rohit");
+		add.setLastName("Gupta");
+		add.setFatherName("Raju");
+		add.setMobileNo(123546789);//range problem
+		add.setEmailId("rohit@gmail.com");
+		add.setAadhaarNo(55415);//range problem
+		add.setPanCard("ROHIT1425");
+		add.setDateOfBirth(LocalDate.of(2001,10,9));
+		add.setResidentialAddress("Kalina, Santacruz, Mumbai 400098");
+		add.setPermanent("Mumbai");
+		add.setOccupation("Uber Driver Manager");
 		add.setIncomeSource("Self");
-		add.setAnnualIncome(500000);
+		add.setAnnualIncome(350000);
 		
 		test.register(add);
 	}
@@ -56,17 +56,17 @@ public class ServiceClassTest {
 		
 		GenericDao dao = new GenericDao();
 		
-		RegistrationDetail user = (RegistrationDetail) dao.fetch(RegistrationDetail.class, (long)39);
+		Registration user = (Registration) dao.fetch(Registration.class, (long)42);
 		
 		ServiceClass test = new ServiceClass();
-		test.onRequestApprove(user, "pooja@123", "pooja@123tr", 7000);
+		test.onRequestApprove(user, "rahul@123", "rahul@123tr", 7000);
 	}
 	
 	@Test
 	public void transactionTest() {
 		ServiceClass test = new ServiceClass();
 		
-		test.transaction((long)1102, (long)1103, 800);
+		test.transaction((long)1041, (long)1040, 800);
 	}
 	
 	
@@ -76,8 +76,8 @@ public class ServiceClassTest {
 		
 		ServiceClass test = new ServiceClass();
 		
-		List<UserTransactionDetail> list = test.getTransactionsOfUser(1102);
-		for(UserTransactionDetail trx : list) {
+		List<Transaction> list = test.getTransactionsOfUser(1041);
+		for(Transaction trx : list) {
 			System.out.println(trx.getFromAccount().getAccountNumber()+" , "+trx.getToAccount().getAccountNumber()+" , "+trx.getAmount()+" , "+trx.getModeOfTransaction());
 		}
 	}
@@ -87,8 +87,8 @@ public class ServiceClassTest {
 		
 		ServiceClass test = new ServiceClass();
 		
-		List<UserTransactionDetail> list = test.getTransactionsOfUserByRange(LocalDateTime.of(LocalDate.of(2021,04,11), LocalTime.of(00,00)),LocalDateTime.of(LocalDate.of(2021,04,11), LocalTime.of(23,59)));
-		for(UserTransactionDetail trx : list) {
+		List<Transaction> list = test.getTransactionsOfUserByRange(LocalDateTime.of(LocalDate.of(2021,04,11), LocalTime.of(00,00)),LocalDateTime.of(LocalDate.of(2021,04,14), LocalTime.of(23,59)));
+		for(Transaction trx : list) {
 			System.out.println(trx.getFromAccount().getAccountNumber()+" , "+trx.getToAccount().getAccountNumber()+" , "+trx.getAmount()+" , "+trx.getModeOfTransaction());
 		}
 	}

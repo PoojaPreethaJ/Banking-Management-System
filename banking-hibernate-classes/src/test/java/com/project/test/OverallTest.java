@@ -7,14 +7,12 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.project.compoundkey.AddPayeeCompoundKey;
+import com.project.compoundkey.PayeeCompound;
 import com.project.dao.GenericDao;
-import com.project.entities.RegistrationDetail;
-import com.project.entities.UserAccountDetail;
-import com.project.entities.UserAccountType;
-import com.project.entities.UserAddPayee;
-import com.project.entities.UserGeneralDetail;
-import com.project.entities.UserTransactionDetail;
+import com.project.entities.Account;
+import com.project.entities.AccountDetail;
+import com.project.entities.Payee;
+import com.project.entities.Registration;
 import com.project.enums.AccountType;
 import com.project.enums.Title;
 import com.project.enums.TransactionType;
@@ -29,7 +27,7 @@ public class OverallTest {
 	@Test
 	public void addRegistration() {
 		
-		RegistrationDetail add = new RegistrationDetail(); 
+		Registration add = new Registration(); 
 		add.setTitle(Title.Ms);
 		add.setFirstName("Chaitra");
 		add.setLastName("C");
@@ -57,14 +55,14 @@ public class OverallTest {
 	@Test
 	public void addAccountDetail() {
 		GenericDao dao= new GenericDao();
-		RegistrationDetail add = (RegistrationDetail)dao.fetch(RegistrationDetail.class, (long)34);
+		Registration add = (Registration)dao.fetch(Registration.class, (long)34);
 		
-		UserAccountDetail ud = new UserAccountDetail();
+		Account ud = new Account();
 		ud.setLoginPassword("chaitra");
 		ud.setTransactionPassword("chai111");
 		ud.setRegistration(add);
 		
-		add.setUserAccountDetail(ud);
+		add.setAccount(ud);
 		dao.save(ud);
 	}
 	
@@ -72,13 +70,13 @@ public class OverallTest {
 	@Test
 	public void addAccountType() {
 		GenericDao dao= new GenericDao();
-		UserAccountDetail ud = (UserAccountDetail)dao.fetch(UserAccountDetail.class, (long)133);
-		UserAccountType accType = new UserAccountType();
+		Account ud = (Account)dao.fetch(Account.class, (long)133);
+		AccountDetail accType = new AccountDetail();
 		accType.setAccountType(AccountType.Savings);
 		accType.setBankBalance(7000);
-		accType.setCustomerId(ud);
+		accType.setAccount(ud);
 		
-		List<UserAccountType> acc = new ArrayList<UserAccountType>();
+		List<AccountDetail> acc = new ArrayList<AccountDetail>();
 		acc.add(accType);
 		ud.setAccounts(acc);
 		dao.save(accType);
@@ -86,7 +84,7 @@ public class OverallTest {
 	}
 	
 	
-	@Test
+/*	@Test
 	public void addGeneralDetails() {
 		GenericDao dao = new GenericDao(); 
 		RegistrationDetail add =(RegistrationDetail)dao.fetch(RegistrationDetail.class,(long)34);
@@ -106,7 +104,7 @@ public class OverallTest {
 		
 		dao.save(general);
 	
-	}
+	}*/
 	/*@Test
 	public void addAccountDetailAndTypeWithGeneral() {
 		
@@ -173,7 +171,7 @@ public class OverallTest {
 	
 	
 	//self transaction
-	@Test
+	/*@Test
 	public void addTransaction() {
 		GenericDao dao = new GenericDao();
 
@@ -210,25 +208,25 @@ public class OverallTest {
 			//System.out.println("Insufficient Bank Balance");
 		
 	}
-	
+	*/
 	
 	@Test
 	public void addBeneficiary() {
 		GenericDao dao = new GenericDao();
-		UserAccountType accType = (UserAccountType)dao.fetch(UserAccountType.class, (long)1085);
-		UserAccountType accType2 = (UserAccountType)dao.fetch(UserAccountType.class, (long)1084);
+		AccountDetail accType = (AccountDetail)dao.fetch(AccountDetail.class, (long)1085);
+		AccountDetail accType2 = (AccountDetail)dao.fetch(AccountDetail.class, (long)1084);
 		
 		//System.out.println("->"+accType.getAccountNumber());
 		
-		AddPayeeCompoundKey key = new AddPayeeCompoundKey();
-		key.setBeneficiaryAccountNo(accType);
-		key.setUserAccountNo(accType2);
-		UserAddPayee payee = new UserAddPayee();
+		PayeeCompound key = new PayeeCompound();
+		key.setBeneficiaryAccount(accType);
+		key.setUserAccount(accType2);
+		Payee payee = new Payee();
 		payee.setBeneficiaryName("Chaitra");
 		payee.setNickName("chai");
 		
 		payee.setCompoundKey(key);
-		List<UserAddPayee> p =new ArrayList<UserAddPayee>();
+		List<Payee> p =new ArrayList<Payee>();
 		p.add(payee);
 		
 		accType.setUserKey(p);

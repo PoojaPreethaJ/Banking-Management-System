@@ -21,16 +21,17 @@ import com.project.enums.AccountType;
 
 @Entity
 @Table(name="tbl_account_type")
-public class UserAccountType {
+public class AccountDetail {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "new_seq3")
-	@SequenceGenerator(sequenceName = "reference_seq3", initialValue = 1000, allocationSize = 1, name="new_seq3")	
+	@SequenceGenerator(sequenceName = "reference_seq3", initialValue = 1000, allocationSize = 1, name="new_seq3")
+	@Column(name="account_number")
 	private long accountNumber;
 	
 	@ManyToOne
 	@JoinColumn(name="customer_id")
-	private UserAccountDetail customerId;
+	private Account account;
 	
 	@Column(name="account_type")
 	private AccountType accountType;
@@ -39,16 +40,16 @@ public class UserAccountType {
 	private double bankBalance;
 	
 	@OneToMany(mappedBy = "fromAccount")
-	private List<UserTransactionDetail> fromTransaction;
+	private List<Transaction> fromTransactions;
 	
 	@OneToMany(mappedBy = "toAccount")
-	private List<UserTransactionDetail> toTransaction;
+	private List<Transaction> toTransactions;
 	
-	@OneToMany(mappedBy = "compoundKey.userAccountNo",cascade =CascadeType.ALL)
-	private List<UserAddPayee> userKey;
+	@OneToMany(mappedBy = "compoundKey.userAccount",cascade =CascadeType.ALL)
+	private List<Payee> userKey;
 	
-	@OneToMany(mappedBy = "compoundKey.beneficiaryAccountNo",cascade =CascadeType.ALL)
-	private List<UserAddPayee> beneficiaryKey;
+	@OneToMany(mappedBy = "compoundKey.beneficiaryAccount",cascade =CascadeType.ALL)
+	private List<Payee> beneficiaryKey;
 
 	public long getAccountNumber() {
 		return accountNumber;
@@ -56,14 +57,6 @@ public class UserAccountType {
 
 	public void setAccountNumber(long accountNumber) {
 		this.accountNumber = accountNumber;
-	}
-
-	public UserAccountDetail getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(UserAccountDetail customerId) {
-		this.customerId = customerId;
 	}
 
 	public AccountType getAccountType() {
@@ -82,36 +75,36 @@ public class UserAccountType {
 		this.bankBalance = bankBalance;
 	}
 
-	public List<UserTransactionDetail> getFromTransaction() {
-		return fromTransaction;
-	}
-
-	public void setFromTransaction(List<UserTransactionDetail> fromTransaction) {
-		this.fromTransaction = fromTransaction;
-	}
-
-	public List<UserTransactionDetail> getToTransaction() {
-		return toTransaction;
-	}
-
-	public void setToTransaction(List<UserTransactionDetail> toTransaction) {
-		this.toTransaction = toTransaction;
-	}
-
-	public List<UserAddPayee> getUserKey() {
+	public List<Payee> getUserKey() {
 		return userKey;
 	}
 
-	public void setUserKey(List<UserAddPayee> userKey) {
+	public void setUserKey(List<Payee> userKey) {
 		this.userKey = userKey;
 	}
 
-	public List<UserAddPayee> getBeneficiaryKey() {
+	public List<Payee> getBeneficiaryKey() {
 		return beneficiaryKey;
 	}
 
-	public void setBeneficiaryKey(List<UserAddPayee> beneficiaryKey) {
+	public void setBeneficiaryKey(List<Payee> beneficiaryKey) {
 		this.beneficiaryKey = beneficiaryKey;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public void setFromTransactions(List<Transaction> fromTransactions) {
+		this.fromTransactions = fromTransactions;
+	}
+
+	public void setToTransactions(List<Transaction> toTransactions) {
+		this.toTransactions = toTransactions;
 	}
 	
 	

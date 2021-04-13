@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.project.dao.GenericDao;
-import com.project.entities.RegistrationDetail;
-import com.project.entities.UserAccountDetail;
 import com.project.enums.Title;
 
 //This is app
@@ -49,7 +47,7 @@ public class App {
 	
 		
 		
-		dao.save(ud);*/
+		dao.save(ud);
 		
 		//====Scenario 2======
 		//add person along with address together
@@ -83,7 +81,7 @@ public class App {
 		dao.save(add);
 		
 		
-
+*/
 	
 	}
 }

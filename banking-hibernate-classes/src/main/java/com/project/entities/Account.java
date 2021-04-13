@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tbl_account_detail")
-public class UserAccountDetail {
+public class Account {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "new_seq2")
@@ -27,7 +27,7 @@ public class UserAccountDetail {
 	
 	@OneToOne
 	@JoinColumn(name="service_reference_no")
-	private RegistrationDetail registration ;
+	private Registration registration ;
 	
 	@Column(name="login_password")
 	private String loginPassword;
@@ -35,11 +35,11 @@ public class UserAccountDetail {
 	@Column(name="transaction_password")
 	private String transactionPassword;
 	
-	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
-	private List<UserAccountType> accounts;
+	@OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
+	private List<AccountDetail> accounts;
 
-	@OneToOne(mappedBy = "customerId",cascade = CascadeType.ALL)
-	private UserGeneralDetail generalDetail;
+	@OneToOne(mappedBy = "account",cascade = CascadeType.ALL)
+	private GeneralDetail generalDetail;
 	
 	
 	public long getCustomerId() {
@@ -52,11 +52,11 @@ public class UserAccountDetail {
 
 	
 
-	public RegistrationDetail getRegistration() {
+	public Registration getRegistration() {
 		return registration;
 	}
 
-	public void setRegistration(RegistrationDetail registration) {
+	public void setRegistration(Registration registration) {
 		this.registration = registration;
 	}
 
@@ -76,19 +76,19 @@ public class UserAccountDetail {
 		this.transactionPassword = transactionPassword;
 	}
 
-	public List<UserAccountType> getAccounts() {
+	public List<AccountDetail> getAccounts() {
 		return accounts;
 	}
 
-	public void setAccounts(List<UserAccountType> accounts) {
+	public void setAccounts(List<AccountDetail> accounts) {
 		this.accounts = accounts;
 	}
 
-	public UserGeneralDetail getGeneralDetail() {
+	public GeneralDetail getGeneralDetail() {
 		return generalDetail;
 	}
 
-	public void setGeneralDetail(UserGeneralDetail generalDetail) {
+	public void setGeneralDetail(GeneralDetail generalDetail) {
 		this.generalDetail = generalDetail;
 	}
 	
