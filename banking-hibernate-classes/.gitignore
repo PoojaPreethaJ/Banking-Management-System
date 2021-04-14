@@ -1,3 +1,4 @@
 /target/
 pom.xml
+*.xml
 /src/main/resources/META-INF/persistence.xml
